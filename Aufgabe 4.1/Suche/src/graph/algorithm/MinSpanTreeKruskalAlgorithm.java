@@ -36,7 +36,7 @@ public class MinSpanTreeKruskalAlgorithm {
 		HashSet<Edge>   allEdges = new HashSet<Edge>();
 		// HashMap fuer Zahl der verbundenen Ecken zu jeder Ecke
 		HashMap<Vertex,Integer> numConnected = new HashMap<Vertex,Integer>();
-		// Verkettete Liste zusammenhängender Ecken wird ebenfalls als HashMap
+		// Verkettete Liste zusammenhï¿½ngender Ecken wird ebenfalls als HashMap
 		// dargestellt, da einfacher zu handhaben. Jede Ecke wird durch die HashMap
 		// auf ihren "Nachfolger" abgebildet (zyklisch).
 		HashMap<Vertex,Vertex> nextInConnectedSet = new HashMap<Vertex,Vertex>();
@@ -51,7 +51,7 @@ public class MinSpanTreeKruskalAlgorithm {
 			connectedSet.put(v1, v1);
 		}
 
-		// Sammle alle Kanten des Graphs. Die Klasse HashSet sorgt dafür, dass
+		// Sammle alle Kanten des Graphs. Die Klasse HashSet sorgt dafï¿½r, dass
 		// keine Kante doppelt aufgenommen wird.
 		allEdges.addAll( wgraph.getAllEdges() );
 
@@ -111,12 +111,20 @@ public class MinSpanTreeKruskalAlgorithm {
 
 		        // Ordne alle Ecken der kleineren Zus.komp. der groesseren zu (durch
 		        // zyklisches Durchlaufen der "Zusammenhangs-HashMap")
-		        /*
+				Vertex i = min;
+				do {
+					connectedSet.put(i, connectedSet.get(max));
+					i = nextInConnectedSet.get(i);
+				} while (i != min);				
+				/*
 		            Hier fehlen ein paar Zeilen ...
-		        */
+				*/
 		        
 		        // Vertausche die Nachfolger von v1 und v2, um die beiden zyklischen
-		        // Zusammenhangslisten zusammenzufuehren
+				// Zusammenhangslisten zusammenzufuehren
+				Vertex h = nextInConnectedSet.get(v1);
+				nextInConnectedSet.put(v1, nextInConnectedSet.get(v2));
+				nextInConnectedSet.put(v2, h);
 		        /*
 		            ... und hier fehlen auch ein paar.
 		        */
