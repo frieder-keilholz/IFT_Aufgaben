@@ -2,6 +2,7 @@ import java.util.*;
 import graph.*;
 
 public class Main {
+    static GraphImpl graph;
     public static void main(String[] args) {
         System.out.println("Test");    
         Spielfeld feld = new Spielfeld(3);
@@ -19,7 +20,9 @@ public class Main {
         SpielfeldVisitor visitor = new SpielfeldVisitor(zielFeld);
 
         while (!shortestWayFound) {            
-            // starte DFS
+            graph = new GraphImpl(true);
+            graph.add(new SpielfeldVertex(feld));
+            // starte DFT
 
         } 
 
@@ -29,13 +32,13 @@ public class Main {
 public static void RealDepthFirstSearch(SpielfeldVertex startat, List<SpielfeldVertex> visited, SpielfeldVisitor visitor){
     Stack<SpielfeldVertex> stack;
     int count;
-    HashMap<Vertex, Integer> visitedMap;
+    HashMap<SpielfeldVertex, Integer> visitedMap;
     
     stack.push( startat );
 
 		do {
 			// Get the next vertex in the queue and add it to the visited
-			Vertex next = stack.pop();
+			SpielfeldVertex next = stack.pop();
 			// Check if vertex has already been processed
 			if (visitedMap.get(next)!=null && !visitedMap.get(next).equals(-1))
 				continue;
@@ -48,13 +51,13 @@ public static void RealDepthFirstSearch(SpielfeldVertex startat, List<SpielfeldV
 
 			// Get all of its adjacent vertices and push them onto the stack
 			// only if it has not been visited
-			for ( Vertex adjacent : graph.getOutgoingAdjacentVertices(next) ) {
+			for ( SpielfeldVertex adjacent : graph.getOutgoingAdjacentVertices(next) ) {
 				if ( visitedMap.get(adjacent) == null || visitedMap.get(adjacent).equals(-1)) {
 					visitedMap.put( adjacent, -1 ); // Mark as visited
-					this.stack.push( adjacent );
+					stack.push( adjacent );
 				}
             }
-        }while ( !this.stack.isEmpty() );
+        }while ( stack.isEmpty() );
     }
 			
 }
