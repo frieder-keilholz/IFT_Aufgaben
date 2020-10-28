@@ -75,7 +75,7 @@ public class Spielfeld {
         return returnList;
     }
 
-    private int[][] copyContent(){
+    public int[][] copyContent(){
         int[][] returnContentArray = new int[this.size][this.size];
         for (int i = 0; i < this.content.length; i++) {
             for (int j = 0; j < this.content.length; j++) {
@@ -83,6 +83,20 @@ public class Spielfeld {
             }
         }
         return returnContentArray;
+    }
+
+    public boolean compareContent(Spielfeld feld2){
+        if(this.size != feld2.size){
+            return false;
+        }
+        for (int i = 0; i < this.content.length; i++) {
+            for (int j = 0; j < this.content.length; j++) {
+                if(this.content[i][j] != feld2.content[i][j]){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public String toString(){
