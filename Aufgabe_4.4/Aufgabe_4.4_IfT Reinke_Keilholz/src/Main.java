@@ -76,8 +76,8 @@ public class Main {
          * sondern von den zuletzt eingefügten Vertices.
          */
         while (!shortestWayFound) {
-            // starte DFT
             System.out.println("Suche mit Tiefe: " + suchtiefe);
+            // starte DFT
             loesung = RealDepthFirstSearch(graph.wurzelVertex, visitor, suchtiefe++);
             if(loesung != null){
                 shortestWayFound = true;
