@@ -30,7 +30,6 @@ public class Main{
             dgraph.add( t7 );
 
             //add edges
-
             dgraph.addEdge(t3,t2);
             dgraph.addEdge(t6,t3);
             dgraph.addEdge(t4,t2);
@@ -40,9 +39,7 @@ public class Main{
             dgraph.addEdge(t7,t5);
             dgraph.addEdge(t1,t6);
             dgraph.addEdge(t3,t7);
-
             System.out.println(dgraph.topologicalSort());
-
         }catch (Exception e){
             e.printStackTrace();
         }
